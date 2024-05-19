@@ -1,31 +1,189 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+const me = {
+  name: "João Pedro Leopoldino",
+  role: "Full Stack Developer",
+  email: "leopoldinodev@gmail.com",
+  linkedin: "https://www.linkedin.com/in/jpleopoldino",
+  yearsExperience: new Date().getFullYear() - 2019,
+};
+
+const about = `Experienced developer with ${me.yearsExperience}+ years of experience, passionate about staying up-to-date with emerging technologies. Skilled in problem-solving, I thrive in dynamic environments and deliver innovative solutions. Dedicated to continuous learning, I actively seek connections and share knowledge with fellow professionals in the field.`;
+
+const skills = [
+  "Typescript",
+  "NodeJS",
+  "React",
+  "React Native",
+  "Flutter",
+  "Dart",
+  "Electron",
+  "Expo",
+  "Styled-Components",
+  "React-Query",
+  "Express",
+  "Prisma",
+  "Socket IO",
+  "MySQL",
+  "MongoDB",
+  "Firebase",
+  "Cloud Firestore",
+  "Google Cloud",
+  "Cloud Run",
+  "Gitflow",
+  "CI/CD",
+];
+
+const experiences = [
+  {
+    companyName: "Prevlogic",
+    positions: [
+      {
+        title: "Frontend Developer",
+        description: ["current role"],
+      },
+    ],
+  },
+  {
+    companyName: "T10",
+    positions: [
+      {
+        title: "Mobile Application Developer",
+        description: [
+          "Participation in the maintenance of a mobile application project, focusing on bug fixing and project structure improvement.",
+          "Collaboration with a Q.A. team for immediate bug fixes in production and also for adjustments and implementation of enhancements for upcoming versions.",
+          "Utilization of React-Native with JavaScript and development of unit tests.",
+          "CI/CD integration for app publishing on Google Play and App Store.",
+          "Participation in discussions and decision-making regarding the project's architecture and technical solutions.",
+          "Conducting tests and debugging to ensure the quality and functionality of the application, along with implementing performance and stability improvements.",
+        ],
+      },
+      {
+        title: "Frontend Developer",
+        description: [
+          "Front-end development of an e-commerce using Typescript, NextJS, and unit testing.",
+          "Sprint planning, task description, and estimation, following the SCRUM methodology.",
+          "Code review and correction, ensuring project quality and consistency.",
+          "Writing test cases to ensure system robustness and stability.",
+          "Working on bug fixes, identifying and solving structural, accessibility, and performance issues.",
+          "Working on CI/CD pipelines, ensuring continuous integration and automated software delivery using Azure DevOps.",
+        ],
+      },
+      {
+        title: "Fullstack Engineer",
+        description: [
+          "Refactoring to Typescript of the real-time delivery tracking platform.",
+          "Development of a chat micro frontend for use on various client platforms.",
+          "Maintenance and improvement of the web API in Node.js, using Firebase RTDB and Firestore for data retrieval and storage.",
+          "Development of frontend application using React, Chakra-UI for a friendly and accessible interface and React-Query for handling cached data and performance.",
+          "Realization of pair Programming and code review.",
+          "Clean, scalable and easy to maintain code.",
+        ],
+      },
+    ],
+  },
+  {
+    companyName: "Instavagas",
+    positions: [
+      {
+        title: "Fullstack Developer",
+        description: [
+          "Development of two mobile applications using React Native and styled-components for a friendly and accessible interface.",
+          "Development and maintenance of NodeJS API using Express and hosting on Google Cloud.",
+          "Development of a chat module with a separate service using SOLID and hosted on Google Cloud Run.",
+          "Publication of applications on Google Play and App Store platforms.",
+          "Development of two MVP's applications for concept testing.",
+          "Development of an interactive dashboard using Electron.js to track registrations, create ads and update users on the platform.",
+          "Maintenance and development of relational database in MySQL.",
+          "Project management as Scrum Master using Jira and Clickup.",
+        ],
+      },
+    ],
+  },
+  {
+    companyName: "Wab - Web and Business",
+    positions: [
+      {
+        title: "Frontend Developer",
+        description: [
+          "Development of e-commerce management application using Symfony.",
+          "Learning and developing apps using Flutter.",
+          "WordPress website development and maintenance.",
+          "Application testing routines.",
+        ],
+      },
+    ],
+  },
+];
 ---
 
 <Layout title="Welcome to Astro.">
-  <main>
-    <p>Hello Portfolio</p>
+  <main
+    class="relative text-white m-auto max-w-sm md:max-w-2xl min-h-screen flex flex-col gap-8 items-start justify-center font-mono pb-12 md:pb-8"
+  >
+    <dl class="flex flex-col items-start gap-1">
+      <dt class="lowercase">{me.role}</dt>
+      <dd class="text-xl">{me.name}</dd>
+    </dl>
+
+    <p class="text-xs text-justify -mt-4 text-zinc-400">{about}</p>
+
+    <div class="flex flex-col items-start gap-2 w-full">
+      <p class="text-sm">some of my skills are</p>
+      <ul
+        class="list-none space-y-1 p-4 bg-zinc-900 rounded-md w-full max-h-52 overflow-y-auto"
+      >
+        {skills.map((skill) => <li class="text-xs pl-4">{skill}</li>)}
+      </ul>
+    </div>
+
+    <div class="flex flex-col items-start gap-2 w-full">
+      <p class="text-sm">my experiences until now</p>
+      <ul
+        class="list-none space-y-4 divide-y divide-zinc-500/20 bg-zinc-900 rounded-md p-4 w-full max-h-52 overflow-y-auto"
+      >
+        {
+          experiences.map((experience, index) => (
+            <li class:list={["text-xs pt-4 pl-4", index === 0 && "pt-0"]}>
+              <p class="text-base mb-1">{experience.companyName}</p>
+              <ul class="list-none ml-4 space-y-2">
+                {experience.positions.map((position) => (
+                  <li class="text-xs">
+                    <p>{position.title}</p>
+                    <ul class="list-none ml-4 space-y-1">
+                      {position.description.map((desc) => (
+                        <li class="text-xs text-zinc-400">{desc}</li>
+                      ))}
+                    </ul>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <a
+      href="https://www.linkedin.com/messaging/compose/?recipient=jpleopoldino"
+      target="_blank"
+      class="text-sm text-center bg-zinc-950 p-4 rounded-md w-full hover:bg-zinc-950/80 active:bg-zinc-800 transition-colors"
+      >contact me</a
+    >
+
+    <div class="absolute bottom-2 flex items-center justify-between w-full">
+      <p class="text-xs">made by {me.name}</p>
+      <dl class="flex items-center gap-1 text-xs">
+        <dt>email</dt>
+        <dd>
+          <a
+            href="mailto:leopoldinodev@gmail.com"
+            class="text-zinc-400 hover:text-white transition-colors"
+            >{me.email}</a
+          >
+        </dd>
+      </dl>
+    </div>
   </main>
 </Layout>
-
-<style>
-  main {
-    margin: auto;
-    padding: 1rem;
-    width: 800px;
-    max-width: calc(100% - 2rem);
-    height: 95%;
-    color: white;
-    font-size: 20px;
-    text-align: center;
-    line-height: 1.6;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  p {
-    margin: auto 0;
-    font-family: monospace;
-  }
-</style>
