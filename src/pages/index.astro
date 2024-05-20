@@ -1,5 +1,8 @@
 ---
+import { Code, Mail, MessageSquare } from "lucide";
+
 import Layout from "../layouts/Layout.astro";
+import Icon from "../components/icon.astro";
 
 const me = {
   name: "João Pedro Leopoldino",
@@ -195,12 +198,15 @@ const experiences = [
   >
     <dl class="flex flex-col items-start gap-1">
       <dt class="lowercase">{me.role}</dt>
-      <dd class="text-xl">{me.name}</dd>
+      <dd class="inline-flex items-center gap-2 text-xl">
+        {me.name}
+        <Icon icon={Code} class="bg-zinc-950 p-1 rounded-md" />
+      </dd>
     </dl>
 
     <p class="text-xs text-justify -mt-4 text-zinc-400">{about}</p>
 
-    <div class="flex flex-col items-start gap-2 w-full">
+    <section class="flex flex-col items-start gap-2 w-full">
       <p class="text-sm">some of my skills are</p>
       <ul
         class="flex items-end list-none space-y-1 p-4 bg-zinc-900 rounded-md w-full flex-wrap"
@@ -216,27 +222,34 @@ const experiences = [
                 skill.importance === 3 && "text-sm md:text-lg font-semibold",
               ]}
             >
-              {`${skill.name}${index < skills.length - 1 ? "," : ""}`}
+              {`${skill.name}${index < skills.length - 1 ? "," : "..."}`}
             </li>
           ))
         }
       </ul>
-    </div>
+    </section>
 
-    <div class="flex flex-col items-start gap-2 w-full">
+    <section
+      class="relative flex flex-col items-start gap-2 w-full rounded-b-md overflow-clip"
+    >
       <p class="text-sm">my experiences until now</p>
       <ul
-        class="list-none space-y-4 divide-y divide-zinc-500/20 bg-zinc-900 rounded-md p-4 w-full max-h-52 overflow-y-auto"
+        class="relative list-none space-y-4 divide-y divide-zinc-500/20 bg-zinc-900 rounded-md p-4 w-full max-h-80 md:max-h-64 overflow-y-auto"
       >
         {
           experiences.map((experience, index) => (
-            <li class:list={["text-xs pt-4 pl-4", index === 0 && "pt-0"]}>
+            <li
+              class:list={[
+                "text-xs pl-4 pt-4",
+                index === experiences.length - 1 ? "pb-8" : "pb-0",
+              ]}
+            >
               <p class="text-base mb-1">{experience.companyName}</p>
               <ul class="list-none ml-4 space-y-2">
                 {experience.positions.map((position) => (
-                  <li class="text-xs">
+                  <li class="text-xs flex flex-col items-start gap-1">
                     <p>{position.title}</p>
-                    <ul class="list-none ml-4 space-y-1">
+                    <ul class="list-disc list-outside ml-4 space-y-2">
                       {position.description.map((desc) => (
                         <li class="text-xs text-zinc-400">{desc}</li>
                       ))}
@@ -248,19 +261,28 @@ const experiences = [
           ))
         }
       </ul>
-    </div>
+      <div
+        class="absolute w-full h-10 bottom-0 left-0 bg-gradient-to-t from-zinc-900 from-10% to-transparent to-90%"
+      >
+      </div>
+    </section>
 
     <a
       href="https://www.linkedin.com/messaging/compose/?recipient=jpleopoldino"
       target="_blank"
-      class="text-sm text-center bg-zinc-950 p-4 rounded-md w-full hover:bg-zinc-950/80 active:bg-zinc-800 transition-colors"
-      >contact me</a
-    >
+      class="inline-flex items-center justify-center gap-2.5 text-sm text-center bg-zinc-950 p-4 rounded-md w-full hover:bg-zinc-950/80 active:bg-zinc-800 transition-colors"
+      >contact me
+      <Icon icon={MessageSquare} class="w-4 h-4" />
+    </a>
 
-    <div class="absolute bottom-2 flex items-center justify-between w-full">
+    <div
+      class="absolute bottom-2 left-0 flex flex-col-reverse gap-2 md:flex-row items-center justify-between w-full"
+    >
       <p class="text-xs">made by {me.name}</p>
       <dl class="flex items-center gap-1 text-xs">
-        <dt>email</dt>
+        <dt>
+          <Icon icon={Mail} class="w-4 h-4" />
+        </dt>
         <dd>
           <a
             href="mailto:leopoldinodev@gmail.com"
