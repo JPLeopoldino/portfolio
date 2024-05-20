@@ -12,27 +12,98 @@ const me = {
 const about = `Experienced developer with ${me.yearsExperience}+ years of experience, passionate about staying up-to-date with emerging technologies. Skilled in problem-solving, I thrive in dynamic environments and deliver innovative solutions. Dedicated to continuous learning, I actively seek connections and share knowledge with fellow professionals in the field.`;
 
 const skills = [
-  "Typescript",
-  "NodeJS",
-  "React",
-  "React Native",
-  "Flutter",
-  "Dart",
-  "Electron",
-  "Expo",
-  "Styled-Components",
-  "React-Query",
-  "Express",
-  "Prisma",
-  "Socket IO",
-  "MySQL",
-  "MongoDB",
-  "Firebase",
-  "Cloud Firestore",
-  "Google Cloud",
-  "Cloud Run",
-  "Gitflow",
-  "CI/CD",
+  {
+    name: "Typescript",
+    importance: 3,
+  },
+  {
+    name: "NodeJS",
+    importance: 2,
+  },
+  {
+    name: "React",
+    importance: 3,
+  },
+  {
+    name: "React Native",
+    importance: 3,
+  },
+  {
+    name: "Flutter",
+    importance: 2,
+  },
+  {
+    name: "Dart",
+    importance: 1,
+  },
+  {
+    name: "Electron",
+    importance: 1,
+  },
+  {
+    name: "Expo",
+    importance: 3,
+  },
+  {
+    name: "Styled-Components",
+    importance: 2,
+  },
+  {
+    name: "React-Query",
+    importance: 3,
+  },
+  {
+    name: "Express",
+    importance: 1,
+  },
+  {
+    name: "Prisma",
+    importance: 1,
+  },
+  {
+    name: "Next.JS",
+    importance: 3,
+  },
+  {
+    name: "Socket IO",
+    importance: 1,
+  },
+  {
+    name: "Astro",
+    importance: 2,
+  },
+  {
+    name: "MySQL",
+    importance: 2,
+  },
+  {
+    name: "MongoDB",
+    importance: 1,
+  },
+  {
+    name: "Firebase",
+    importance: 2,
+  },
+  {
+    name: "Cloud Firestore",
+    importance: 1,
+  },
+  {
+    name: "Google Cloud",
+    importance: 2,
+  },
+  {
+    name: "Cloud Run",
+    importance: 1,
+  },
+  {
+    name: "Gitflow",
+    importance: 1,
+  },
+  {
+    name: "CI/CD",
+    importance: 1,
+  },
 ];
 
 const experiences = [
@@ -120,7 +191,7 @@ const experiences = [
 
 <Layout title="Welcome to Astro.">
   <main
-    class="relative text-white m-auto max-w-sm md:max-w-2xl min-h-screen flex flex-col gap-8 items-start justify-center font-mono pb-12 md:pb-8"
+    class="relative text-white m-auto max-w-sm md:max-w-2xl min-h-screen flex flex-col gap-8 items-start justify-center font-mono px-4 pt-8 pb-20 md:pb-8"
   >
     <dl class="flex flex-col items-start gap-1">
       <dt class="lowercase">{me.role}</dt>
@@ -132,9 +203,23 @@ const experiences = [
     <div class="flex flex-col items-start gap-2 w-full">
       <p class="text-sm">some of my skills are</p>
       <ul
-        class="list-none space-y-1 p-4 bg-zinc-900 rounded-md w-full max-h-52 overflow-y-auto"
+        class="flex items-end list-none space-y-1 p-4 bg-zinc-900 rounded-md w-full flex-wrap"
       >
-        {skills.map((skill) => <li class="text-xs pl-4">{skill}</li>)}
+        {
+          skills.map((skill, index) => (
+            <li
+              class:list={[
+                "pl-4 leading-normal",
+                skill.importance === 1 && "text-xs text-zinc-400",
+                skill.importance === 2 &&
+                  "text-xs md:text-sm text-zinc-200 md:text-white",
+                skill.importance === 3 && "text-sm md:text-lg font-semibold",
+              ]}
+            >
+              {`${skill.name}${index < skills.length - 1 ? "," : ""}`}
+            </li>
+          ))
+        }
       </ul>
     </div>
 
